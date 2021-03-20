@@ -1,0 +1,43 @@
+<form class="form" [formGroup]="styleResultForm">
+  <div fxLayout="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Text
+      </mat-label>
+      <input (keyup)="handleTextChange($event)" [value]="Text" matInput type="text" min="10"/>
+      <mat-error *ngIf="styleResultForm.controls.text.invalid">Please Enter a value</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row">
+    <mat-form-field appearance="fill">
+      <mat-label>
+        Color
+      </mat-label>
+      <input (keyup)="handleColorChange($event)" matInput/>
+      <mat-error *ngIf="styleResultForm.controls.color.invalid">Invalid Color</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row">
+
+    <mat-form-field appearance="fill">
+      <mat-label>
+        Font size
+      </mat-label>
+      <input (keyup)="handleFontSizeChange($event)" matInput type="number"/>
+      <mat-error *ngIf="styleResultForm.controls.font.invalid">Invalid Font Size</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="font-unit">
+      <mat-label>
+        Unit
+      </mat-label>
+      <input matInput type="text" [matAutocomplete]="units" value="{{selectedUnit}}"
+             (change)="handleUnitChange($event)">
+      <mat-autocomplete #units autoActiveFirstOption
+                        (optionSelected)="changeUnit($event.option.value)">
+        <mat-option *ngFor="let option of fontUnits" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+<mat-drawer-container class="drawer-container" [ngClass]="{'drawer-open' : drawer.opened}" autosize>
+  <mat-drawer [class.mat-custom-drawer] #drawer class="sidenav" fxLayout="row">
+    <button
+      *ngFor="let page of Pages"
+      (click)="drawer.toggle(); ActiveLink = page.link;"
+      color="primary" mat-button
+      [ngClass]="{'active' : ActiveLink=== page.link}">
+      {{page.title}}
+    </button>
+  </mat-drawer>
+
+  <div class="nav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle()" fxShow="false" fxShow.lt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{NavBrand}}</span>
+        <nav mat-tab-nav-bar color="accent" fxShow="true" fxHide.lt-sm>
+          <a mat-tab-link *ngFor="let page of Pages"
+             routerLink='/{{page.link}}'
+             (click)="ActiveLink = page.link"
+             [active]="ActiveLink == page.link"> {{page.title}} </a>
+        </nav>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</mat-drawer-container>
