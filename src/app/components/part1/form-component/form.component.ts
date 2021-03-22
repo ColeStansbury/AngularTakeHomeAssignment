@@ -20,11 +20,11 @@ export class FormComponent implements OnInit {
   @Output() FontSizeChange = new EventEmitter<string>();
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder) {
     this.styleResultForm = this.formBuilder.group({
-      text: [this.Text, Validators.required],
-      color: [this.Color],
-      font: [this.FontSize],
+      textControl: [this.Text, Validators.required],
+      colorControl: [this.Color],
+      fontControl: [this.FontSize],
     });
     this.fontNumber = '12';
     this.fontUnits = ['cm', 'mm', 'in', 'px', 'pt', 'pc', 'em', 'ex', 'ch', 'rem', 'vw', 'vh',

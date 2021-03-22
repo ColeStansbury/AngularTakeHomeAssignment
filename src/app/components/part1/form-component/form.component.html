@@ -4,7 +4,6 @@
       <mat-label>Text
       </mat-label>
       <input (keyup)="handleTextChange($event)" [value]="Text" matInput type="text" min="10"/>
-      <mat-error *ngIf="styleResultForm.controls.text.invalid">Please Enter a value</mat-error>
     </mat-form-field>
   </div>
   <div fxLayout="row">
@@ -13,7 +12,6 @@
         Color
       </mat-label>
       <input (keyup)="handleColorChange($event)" matInput/>
-      <mat-error *ngIf="styleResultForm.controls.color.invalid">Invalid Color</mat-error>
     </mat-form-field>
   </div>
   <div fxLayout="row">
@@ -22,8 +20,9 @@
       <mat-label>
         Font size
       </mat-label>
-      <input (keyup)="handleFontSizeChange($event)" matInput type="number"/>
-      <mat-error *ngIf="styleResultForm.controls.font.invalid">Invalid Font Size</mat-error>
+      <input
+        (change)="handleFontSizeChange($event)"
+        (keyup)="handleFontSizeChange($event)" matInput type="number"/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="font-unit">
